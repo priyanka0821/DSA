@@ -31,6 +31,7 @@ class Solution {
         return true;
     }
     public boolean isPalindrome(ListNode head) {
+        if(head==null || head.next==null) return true;
        //find middle of ll
        ListNode slow=head, fast=head;
        while(fast!=null && fast.next!=null){
