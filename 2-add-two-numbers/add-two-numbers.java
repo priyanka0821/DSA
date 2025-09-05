@@ -34,7 +34,7 @@ class Solution {
             ListNode newNode=new ListNode();
             if(sum>9){
                 newNode.val=sum%10;
-                carry=sum/10;
+                carry=1;
             }else{
                 newNode.val=sum;
                 carry=0;
@@ -48,7 +48,7 @@ class Solution {
             ListNode newNode=new ListNode();
             if(sum>9){
                 newNode.val=sum%10;
-                carry=sum/10;
+                carry=1;
             }else{
                 newNode.val=sum;
                 carry=0;
