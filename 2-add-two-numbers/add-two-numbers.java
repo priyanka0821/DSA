@@ -10,57 +10,33 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode temp1=l1, temp2=l2;
-        ListNode head=new ListNode(0);
-        ListNode temp=head;
-        int carry=0;
-        while(temp1!=null && temp2!=null){
-            int sum=temp1.val+temp2.val+carry;
-            ListNode newNode=new ListNode();
-            if(sum>9){
-                newNode.val=sum%10;
-                carry=sum/10;
-            }else{
-                newNode.val=sum;
-                carry=0;
-            }
-            temp.next=newNode;
-             temp = temp.next;
-            temp1=temp1.next;
-            temp2=temp2.next;
-        }
-        while(temp1!=null){
-            int sum=temp1.val+carry;
-            ListNode newNode=new ListNode();
-            if(sum>9){
-                newNode.val=sum%10;
-                carry=1;
-            }else{
-                newNode.val=sum;
-                carry=0;
-            }
-            temp.next=newNode;
-             temp = temp.next;
-            temp1=temp1.next;
-        }
-        while(temp2!=null){
-            int sum=temp2.val+carry;
-            ListNode newNode=new ListNode();
-            if(sum>9){
-                newNode.val=sum%10;
-                carry=1;
-            }else{
-                newNode.val=sum;
-                carry=0;
-            }
-             temp.next=newNode;
-              temp = temp.next;
-            temp2=temp2.next;
-        }
-        if(carry!=0){
-            ListNode newNode=new ListNode(carry);
-            temp.next=newNode;
-        }
-        return head.next;
+      ListNode temp1=l1;
+   ListNode temp2=l2;
+      
+      //create dummy node 
+      ListNode dummyNode=new ListNode(-1);
+     ListNode curr=dummyNode;
+      int carry=0;
+      
+      
+      while(temp1!=null || temp2!=null || carry!=0){
+          int sum=carry;
+          
+          //check if ll is not null
+          if(temp1!=null) sum+=temp1.val;
+          if(temp2!=null) sum+=temp2.val;
+          
+          //create new node
+         ListNode newNode=new ListNode(sum%10);
+          carry=sum/10;
+          
+          curr.next=newNode;
+          curr=curr.next;
+          
+          //check if ll is not null and increment them
+          if(temp1!=null) temp1=temp1.next;
+          if(temp2!=null) temp2=temp2.next;
+      }
+      return dummyNode.next;
     }
 }
